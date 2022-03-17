@@ -45,4 +45,4 @@ chmod 777 /home/ubuntu/spring-petclinic/bin/setAPMenv.sh
 echo 'source /home/ubuntu/spring-petclinic/bin/setAPMenv.sh' >> ~/.bashrc 
 
 # Pull online IDE
-sudo pull elswork/theia:1.0.1
+sudo docker pull elswork/theia:1.0.1
