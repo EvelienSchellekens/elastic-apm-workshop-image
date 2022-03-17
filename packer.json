@@ -1,0 +1,39 @@
+{
+  "_comment": "Ubuntu Server 18.04 LTS (HVM) in the right region for Strigo",
+  "variables": {
+      "aws_access_key": "{{ env `AWS_ACCESS_KEY_ID` }}",
+      "aws_secret_key": "{{ env `AWS_SECRET_ACCESS_KEY` }}",
+      "aws_region": "eu-central-1",
+      "source_ami": "ami-0b418580298265d5c",
+      "disk_size": "40"
+  },
+  "sensitive-variables": [ "aws_access_key", "aws_secret_key" ],
+  "builders": [
+      {
+          "type": "amazon-ebs",
+          "access_key": "{{ user `aws_access_key` }}",
+          "secret_key": "{{ user `aws_secret_key` }}",
+          "region": "{{ user `aws_region` }}",
+          "source_ami": "{{ user `source_ami` }}",
+          "instance_type": "t2.large",
+          "associate_public_ip_address": true,
+          "ssh_username": "ubuntu",
+          "ami_name": "elastic-apm-workshop-{{ timestamp }}",
+          "ami_users": [ "214514861431" ],
+          "launch_block_device_mappings": [
+              {
+                  "device_name": "/dev/sda1",
+                  "volume_size": "{{ user `disk_size` }}",
+                  "volume_type": "gp2",
+                  "delete_on_termination": true
+              }
+          ]
+      }
+  ],
+  "provisioners": [
+      {
+          "type": "shell",
+          "script": "setup.sh"
+      }
+  ]
+}
