@@ -12,3 +12,12 @@ The base image is [Canonical, Ubuntu, 18.04 LTS, amd64 bionic image build on 202
 
 The AMI image is shared by default with the Strigo account as specified by [their documentation](http://help.strigo.io/en/articles/1941452-use-custom-lab-images).
 
+## Strigo init script
+
+Add this to the init script in Strigo to start the IDE container:
+
+```bash
+#!/bin/bash
+sudo docker run -d -it -p 3022:3000 -v "/home/ubuntu/spring-petclinic:/home/project:cached" elswork/theia:1.0.1
+exit
+```
