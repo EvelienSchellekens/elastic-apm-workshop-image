@@ -42,7 +42,15 @@ git clone https://github.com/EvelienSchellekens/spring-petclinic.git
 chmod 777 /home/ubuntu/spring-petclinic/bin/setAPMenv.sh
 
 # Add variables to profile
-echo 'source /home/ubuntu/spring-petclinic/bin/setAPMenv.sh' >> ~/.bashrc 
+echo 'source /home/ubuntu/spring-petclinic/bin/setAPMenv.sh' >> ~/.bashrc
+
+# Install dependencies
+cd /home/ubuntu/spring-petclinic/address_resolver/src && sudo pip3 install --no-cache-dir -r requirements.txt
+cd /home/ubuntu/spring-petclinic/frontend/server && npm install
+cd /home/ubuntu/spring-petclinic/frontend/client && npm install
+
+# Build load gen image
+cd /home/ubuntu/spring-petclinic/loadgen/client && sudo docker build --tag "loadgen" . 
 
 # Pull online IDE
 sudo docker pull elswork/theia:1.0.1
