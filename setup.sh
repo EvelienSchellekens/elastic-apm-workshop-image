@@ -51,6 +51,7 @@ cd /home/ubuntu/spring-petclinic/frontend/client && npm install
 
 # Build load gen image
 cd /home/ubuntu/spring-petclinic/loadgen/client && sudo docker build --tag "loadgen" . 
+cd /home/ubuntu/spring-petclinic/loadgen/client && sudo docker build --tag "loadgenserver" . 
 
 # Pull online IDE
 sudo docker pull elswork/theia:1.0.1
